@@ -35,112 +35,49 @@
 @layer components {
   .hexagon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    justify-items: center;
-    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
   }
 
   @media (min-width: 768px) {
     .hexagon-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 4rem;
+      gap: 2.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .hexagon-grid {
       grid-template-columns: repeat(3, 1fr);
-      gap: 3rem 2rem;
+      gap: 2rem;
     }
   }
 
-  .hexagon-card-wrapper {
-    width: 100%;
-    max-width: 340px;
+  .blob-card {
+    background: #E8E8E8;
+    padding: 2.5rem;
+    border-radius: 3rem;
     position: relative;
-  }
-
-  .hexagon-card {
-    width: 100%;
-    position: relative;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hexagon-card:hover {
-    transform: translateY(-8px);
-  }
-
-  .hexagon-border {
-    position: relative;
-    width: 100%;
-    padding: 3px;
-    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #FF6B6B 100%);
-    clip-path: polygon(
-      30% 0%,
-      70% 0%,
-      100% 30%,
-      100% 70%,
-      70% 100%,
-      30% 100%,
-      0% 70%,
-      0% 30%
-    );
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
-    transition: filter 0.4s ease;
-  }
-
-  .hexagon-card:hover .hexagon-border {
-    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.2));
-  }
-
-  .hexagon-content {
-    background: white;
-    clip-path: polygon(
-      30% 0%,
-      70% 0%,
-      100% 30%,
-      100% 70%,
-      70% 100%,
-      30% 100%,
-      0% 70%,
-      0% 30%
-    );
-    padding: 3rem 2rem;
-    min-height: 420px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
   }
 
-  .hexagon-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(78, 205, 196, 0.03) 0%, rgba(255, 107, 107, 0.03) 100%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-  }
-
-  .hexagon-card:hover .hexagon-content::before {
-    opacity: 1;
+  .blob-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   }
 
   @media (max-width: 767px) {
-    .hexagon-content {
-      padding: 2.5rem 1.75rem;
-      min-height: 380px;
+    .blob-card {
+      padding: 2rem;
+      border-radius: 2.5rem;
     }
 
     .hexagon-grid {
-      gap: 2.5rem;
+      gap: 1.5rem;
     }
   }
 }
