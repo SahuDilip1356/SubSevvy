@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 import { AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
@@ -23,7 +24,20 @@ export default function Login() {
       setError(error.message);
       setLoading(false);
     } else {
-      navigate('/dashboard');
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data: onboardingData } = await supabase
+          .from('user_onboarding')
+          .select('completed')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (onboardingData?.completed) {
+          navigate('/dashboard');
+        } else {
+          navigate('/onboarding');
+        }
+      }
     }
   };
 

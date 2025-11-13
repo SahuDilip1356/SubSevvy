@@ -65,39 +65,8 @@ function ProtectedRoute({ children, requireOnboarding = false }: { children: Rea
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
-  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
-  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
 
-  useEffect(() => {
-    const checkOnboarding = async () => {
-      if (!user) {
-        setCheckingOnboarding(false);
-        return;
-      }
-
-      try {
-        const { data, error } = await supabase
-          .from('user_onboarding')
-          .select('completed')
-          .eq('user_id', user.id)
-          .maybeSingle();
-
-        if (error) {
-          console.error('Error checking onboarding:', error);
-        }
-
-        setHasCompletedOnboarding(data?.completed || false);
-      } catch (error) {
-        console.error('Error checking onboarding:', error);
-      } finally {
-        setCheckingOnboarding(false);
-      }
-    };
-
-    checkOnboarding();
-  }, [user]);
-
-  if (loading || checkingOnboarding) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-coral"></div>
@@ -105,15 +74,7 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!user) {
-    return <>{children}</>;
-  }
-
-  if (!hasCompletedOnboarding) {
-    return <Navigate to="/onboarding" />;
-  }
-
-  return <Navigate to="/dashboard" />;
+  return !user ? <>{children}</> : <Navigate to="/dashboard" />;
 }
 
 function AppRoutes() {
