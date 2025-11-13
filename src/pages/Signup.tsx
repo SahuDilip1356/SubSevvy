@@ -37,7 +37,7 @@ export default function Signup() {
       setError(error.message);
       setLoading(false);
     } else {
-      navigate('/dashboard');
+      navigate('/onboarding');
     }
   };
 
