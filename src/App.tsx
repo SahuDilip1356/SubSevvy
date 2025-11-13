@@ -7,11 +7,44 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Onboarding from './pages/Onboarding';
+import { useEffect, useState } from 'react';
+import { supabase } from './lib/supabase';
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute({ children, requireOnboarding = false }: { children: React.ReactNode; requireOnboarding?: boolean }) {
   const { user, loading } = useAuth();
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
 
-  if (loading) {
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      if (!user) {
+        setCheckingOnboarding(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('user_onboarding')
+          .select('completed')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error checking onboarding:', error);
+        }
+
+        setHasCompletedOnboarding(data?.completed || false);
+      } catch (error) {
+        console.error('Error checking onboarding:', error);
+      } finally {
+        setCheckingOnboarding(false);
+      }
+    };
+
+    checkOnboarding();
+  }, [user]);
+
+  if (loading || checkingOnboarding) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-coral"></div>
@@ -19,13 +52,52 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  return user ? <>{children}</> : <Navigate to="/login" />;
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  if (requireOnboarding && !hasCompletedOnboarding) {
+    return <Navigate to="/onboarding" />;
+  }
+
+  return <>{children}</>;
 }
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
 
-  if (loading) {
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      if (!user) {
+        setCheckingOnboarding(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('user_onboarding')
+          .select('completed')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error checking onboarding:', error);
+        }
+
+        setHasCompletedOnboarding(data?.completed || false);
+      } catch (error) {
+        console.error('Error checking onboarding:', error);
+      } finally {
+        setCheckingOnboarding(false);
+      }
+    };
+
+    checkOnboarding();
+  }, [user]);
+
+  if (loading || checkingOnboarding) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-coral"></div>
@@ -33,7 +105,15 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  return !user ? <>{children}</> : <Navigate to="/dashboard" />;
+  if (!user) {
+    return <>{children}</>;
+  }
+
+  if (!hasCompletedOnboarding) {
+    return <Navigate to="/onboarding" />;
+  }
+
+  return <Navigate to="/dashboard" />;
 }
 
 function AppRoutes() {
@@ -78,7 +158,7 @@ function AppRoutes() {
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute requireOnboarding={true}>
             <Dashboard />
           </ProtectedRoute>
         }
