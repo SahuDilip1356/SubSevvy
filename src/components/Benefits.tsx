@@ -16,7 +16,7 @@ const benefits = [
     icon: Search,
     title: 'Ghost Subscription Scanner',
     description:
-      "Automatically scan your last 12 months and discover subscriptions you're still paying for but never use. Most users find $500-1,500 in forgotten charges within 60 seconds.",
+      "Scan your past 6 months of transactions to uncover forgotten subscriptions draining your wallet. Most users recover $500–$1,500 in minutes.",
     stat: 'Average savings: $847',
     gradient: 'bg-gradient-teal',
   },
@@ -24,7 +24,7 @@ const benefits = [
     icon: PieChart,
     title: 'See Your True Spend',
     description:
-      'All subscriptions, one dashboard. Multi-currency intelligence (USD, EUR, INR, GBP) with real-time exchange rates so you always know your total spend.',
+      'One dashboard for every subscription. Real-time, multi-currency insights (USD, EUR, INR, GBP) so you always know your true total.',
     stat: 'Track unlimited subscriptions',
     gradient: 'bg-gradient-teal',
   },
