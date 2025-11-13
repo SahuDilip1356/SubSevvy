@@ -62,29 +62,18 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            {user ? (
-              <button
-                onClick={() => navigate('/dashboard')}
-                className="bg-coral text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-coral-dark transition-all hover:shadow-lg"
-              >
-                Go to Dashboard
-              </button>
-            ) : (
-              <>
-                <button
-                  onClick={handleSignIn}
-                  className="text-gray hover:text-dark font-medium transition-colors"
-                >
-                  Sign In
-                </button>
-                <button
-                  onClick={handleStartFreeScan}
-                  className="bg-coral text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-coral-dark transition-all hover:shadow-lg"
-                >
-                  Start Free Scan
-                </button>
-              </>
-            )}
+            <button
+              onClick={handleSignIn}
+              className="text-gray hover:text-dark font-medium transition-colors"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={handleStartFreeScan}
+              className="bg-coral text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-coral-dark transition-all hover:shadow-lg"
+            >
+              {user ? 'Go to Dashboard' : 'Start Free Scan'}
+            </button>
           </div>
 
           <button
@@ -111,38 +100,24 @@ export default function Navigation() {
               </a>
             ))}
             <div className="pt-4 space-y-3">
-              {user ? (
-                <button
-                  onClick={() => {
-                    navigate('/dashboard');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full bg-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-coral-dark transition-all"
-                >
-                  Go to Dashboard
-                </button>
-              ) : (
-                <>
-                  <button
-                    onClick={() => {
-                      handleSignIn();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full text-gray hover:text-dark font-medium transition-colors py-2"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    onClick={() => {
-                      handleStartFreeScan();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full bg-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-coral-dark transition-all"
-                  >
-                    Start Free Scan
-                  </button>
-                </>
-              )}
+              <button
+                onClick={() => {
+                  handleSignIn();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-gray hover:text-dark font-medium transition-colors py-2"
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => {
+                  handleStartFreeScan();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full bg-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-coral-dark transition-all"
+              >
+                {user ? 'Go to Dashboard' : 'Start Free Scan'}
+              </button>
             </div>
           </div>
         </div>
