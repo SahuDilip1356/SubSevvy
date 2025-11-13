@@ -26,7 +26,11 @@ export default function Navigation() {
   ];
 
   const handleSignIn = () => {
-    navigate('/login');
+    if (user) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
   };
 
   const handleStartFreeScan = () => {
