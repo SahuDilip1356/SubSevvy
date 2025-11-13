@@ -9,6 +9,7 @@ import {
   Gift,
   Shield,
 } from 'lucide-react';
+import HexagonCard from './HexagonCard';
 
 const benefits = [
   {
@@ -102,32 +103,17 @@ export default function Benefits() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white p-8 md:p-10 rounded-2xl shadow-card hover:shadow-card-hover transition-all hover:-translate-y-2 duration-300"
-              >
-                <div
-                  className={`w-16 h-16 rounded-full ${benefit.gradient} flex items-center justify-center mb-6`}
-                >
-                  <Icon className="w-8 h-8 text-white" />
-                </div>
-
-                <h3 className="text-xl md:text-2xl font-serif font-bold text-dark mb-4">
-                  {benefit.title}
-                </h3>
-
-                <p className="text-gray leading-relaxed mb-4">
-                  {benefit.description}
-                </p>
-
-                <div className="text-coral font-semibold">{benefit.stat}</div>
-              </div>
-            );
-          })}
+        <div className="hexagon-grid">
+          {benefits.map((benefit, index) => (
+            <HexagonCard
+              key={index}
+              icon={benefit.icon}
+              title={benefit.title}
+              description={benefit.description}
+              stat={benefit.stat}
+              gradient={benefit.gradient}
+            />
+          ))}
         </div>
       </div>
     </section>
