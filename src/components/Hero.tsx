@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative bg-gradient-hero min-h-screen flex items-center pt-20 px-6">
       <div className="max-w-6xl mx-auto w-full text-center py-24">
         <p className="text-sm uppercase tracking-wide text-white/80 mb-4 font-medium">
-          For AI Professionals & Developers
+          For solopreneurs, students, startups, hobbyists & families
         </p>
 
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
