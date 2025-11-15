@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import StartupDashboard from './pages/StartupDashboard';
 import HobbyistDashboard from './pages/HobbyistDashboard';
+import FamilyDashboard from './pages/FamilyDashboard';
 import Onboarding from './pages/Onboarding';
 import { useEffect, useState } from 'react';
 import { supabase } from './lib/supabase';
@@ -132,6 +133,10 @@ function DashboardRouter() {
 
   if (userType === 'hobbyist') {
     return <HobbyistDashboard />;
+  }
+
+  if (userType === 'family') {
+    return <FamilyDashboard />;
   }
 
   return <Dashboard />;
