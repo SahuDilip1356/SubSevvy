@@ -6,6 +6,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import StudentDashboard from './pages/StudentDashboard';
 import Onboarding from './pages/Onboarding';
 import { useEffect, useState } from 'react';
 import { supabase } from './lib/supabase';
@@ -77,6 +78,55 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
   return !user ? <>{children}</> : <Navigate to="/dashboard" />;
 }
 
+function DashboardRouter() {
+  const { user } = useAuth();
+  const [userType, setUserType] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserType = async () => {
+      if (!user) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase
+          .from('user_onboarding')
+          .select('user_type')
+          .eq('user_id', user.id)
+          .maybeSingle();
+
+        if (error) {
+          console.error('Error fetching user type:', error);
+        }
+
+        setUserType(data?.user_type || 'solopreneur');
+      } catch (error) {
+        console.error('Error fetching user type:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserType();
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-600"></div>
+      </div>
+    );
+  }
+
+  if (userType === 'student') {
+    return <StudentDashboard />;
+  }
+
+  return <Dashboard />;
+}
+
 function AppRoutes() {
   return (
     <Routes>
@@ -120,7 +170,7 @@ function AppRoutes() {
         path="/dashboard"
         element={
           <ProtectedRoute requireOnboarding={true}>
-            <Dashboard />
+            <DashboardRouter />
           </ProtectedRoute>
         }
       />
