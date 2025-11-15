@@ -15,7 +15,7 @@ export default function Hero() {
 
         <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
           Stop losing money to forgotten subscriptions. SubSavvy shows you exactly
-          what you're paying for—and helps you cut the waste.
+          what you're paying for and helps you cut the waste.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
