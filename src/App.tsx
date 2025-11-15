@@ -135,7 +135,7 @@ function DashboardRouter() {
     return <HobbyistDashboard />;
   }
 
-  if (userType === 'family') {
+  if (userType === 'group_family') {
     return <FamilyDashboard />;
   }
 
