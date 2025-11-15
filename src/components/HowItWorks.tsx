@@ -60,50 +60,72 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-navy-950 relative overflow-hidden px-6">
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl" />
-
-      <div className="max-w-5xl mx-auto relative z-10">
+    <section id="how-it-works" className="bg-background py-20 md:py-32 px-6">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-white mb-6">
-            3 minutes to financial clarity
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-6">
+            From chaos to clarity in 5 simple steps
           </h2>
-          <p className="text-xl text-slate-300">
-            No spreadsheets. No manual entry. Just connect and done.
+          <p className="text-lg md:text-xl text-gray max-w-2xl mx-auto leading-relaxed mb-6">
+            No spreadsheets. No manual tracking. Just connect once and let AI do the heavy lifting.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center text-sm text-gray">
+            <span className="flex items-center justify-center gap-2">
+              ⏱️ Average setup: 2 minutes
+            </span>
+            <span className="flex items-center justify-center gap-2">
+              🔒 Bank-level encryption
+            </span>
+            <span className="flex items-center justify-center gap-2">
+              ✓ No credit card required
+            </span>
+          </div>
         </div>
 
-        <div className="space-y-16">
-          {steps.slice(0, 3).map((step, index) => {
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => {
             const Icon = step.icon;
-            const gradients = [
-              'bg-gradient-cta',
-              'bg-gradient-to-br from-cyan-500 to-blue-600',
-              'bg-gradient-to-br from-purple-500 to-pink-600'
-            ];
             return (
-              <div key={index} className="flex gap-8 items-start">
-                <div className="flex-shrink-0">
-                  <div className={`w-16 h-16 ${gradients[index]} rounded-full flex items-center justify-center font-mono text-2xl font-bold text-white`}>
-                    0{step.number}
+              <div
+                key={index}
+                className="bg-white p-8 md:p-12 rounded-3xl shadow-card hover:shadow-card-hover transition-all duration-300"
+              >
+                <div className="flex items-start gap-4 mb-6">
+                  <span className="text-5xl md:text-6xl">{step.emoji}</span>
+                  <div className="flex-1">
+                    <p className="text-sm uppercase tracking-wide text-teal mb-1 font-semibold">
+                      Step {step.number} of 5 • {step.time}
+                    </p>
+                    <h3 className="text-2xl md:text-3xl font-serif font-bold text-dark">
+                      {step.title}
+                    </h3>
                   </div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-3xl font-semibold text-white mb-4">{step.title}</h3>
-                  <p className="text-slate-400 text-lg mb-6 leading-relaxed">
-                    {step.description}
+
+                <div className="bg-gradient-to-br from-teal/10 to-coral/10 rounded-xl p-8 mb-6 aspect-video flex items-center justify-center">
+                  <Icon className="w-20 h-20 text-teal opacity-40" />
+                </div>
+
+                <p className="text-gray leading-relaxed mb-6">
+                  {step.description}
+                </p>
+
+                <div className="bg-coral/10 border-l-4 border-coral p-4 rounded mb-4">
+                  <p className="text-sm font-semibold text-coral">
+                    → {step.action}
                   </p>
-                  <div className="p-4 bg-navy-900 border border-white/10 rounded-lg inline-block">
-                    <div className="flex items-center gap-3">
-                      <Icon className="w-6 h-6 text-cyan-400" />
-                      <span className="text-slate-300">{step.trust}</span>
-                    </div>
-                  </div>
                 </div>
+
+                <p className="text-xs text-gray italic">"{step.trust}"</p>
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-16">
+          <button className="bg-coral text-white px-10 py-5 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+            Start Your Free Scan Now
+          </button>
         </div>
       </div>
     </section>

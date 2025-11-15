@@ -4,46 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: '#0A1628',
-          900: '#0F2439',
-          800: '#1A3A52',
+        coral: {
+          DEFAULT: '#FF6B6B',
+          light: '#FF8787',
+          dark: '#E85555',
         },
-        indigo: {
-          600: '#4F46E5',
-          500: '#6366F1',
-          400: '#818CF8',
+        teal: {
+          DEFAULT: '#4ECDC4',
+          light: '#6FE3DA',
+          dark: '#44A08D',
         },
-        slate: {
-          200: '#E2E8F0',
-          300: '#94A3B8',
-          400: '#64748B',
-          600: '#475569',
-          700: '#334155',
-          800: '#1E293B',
-          900: '#0F172A',
+        dark: {
+          DEFAULT: '#2C3E50',
+          light: '#34495E',
         },
-        cyan: {
-          400: '#22D3EE',
-          500: '#06B6D4',
+        gray: {
+          DEFAULT: '#7F8C8D',
+          light: '#95A5A6',
+          lighter: '#BDC3C7',
+          lightest: '#ECF0F1',
         },
-        amber: {
-          200: '#FDE68A',
-          400: '#FBBF24',
-          500: '#F59E0B',
-        },
-        green: {
-          400: '#4ADE80',
-          500: '#22C55E',
-        },
-        red: {
-          400: '#F87171',
-          500: '#EF4444',
-        },
+        background: '#F8F9FA',
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        serif: ['"DM Serif Display"', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',
@@ -53,17 +38,15 @@ export default {
         '128': '32rem',
       },
       boxShadow: {
-        'sm': '0 1px 2px rgba(0, 0, 0, 0.12)',
-        'md': '0 4px 12px rgba(0, 0, 0, 0.15)',
-        'lg': '0 12px 32px rgba(0, 0, 0, 0.25)',
-        'xl': '0 20px 48px rgba(0, 0, 0, 0.35)',
-        'glow': '0 0 32px rgba(79, 70, 229, 0.4)',
-        'glow-lg': '0 8px 32px rgba(79, 70, 229, 0.6)',
+        'card': '0 4px 20px rgba(0, 0, 0, 0.08)',
+        'card-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
+        'lg': '0 10px 40px rgba(0, 0, 0, 0.1)',
+        'xl': '0 20px 50px rgba(0, 0, 0, 0.15)',
       },
       backgroundImage: {
-        'gradient-hero': 'linear-gradient(135deg, #0A1628 0%, #1E3A5F 50%, #4F46E5 100%)',
-        'gradient-card': 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-        'gradient-cta': 'linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%)',
+        'gradient-teal': 'linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #34495E 0%, #2C3E50 100%)',
       },
       borderRadius: {
         '4xl': '2rem',

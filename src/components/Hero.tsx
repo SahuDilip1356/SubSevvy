@@ -1,96 +1,52 @@
-import { Shield, TrendingUp, Users } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Check, Play } from 'lucide-react';
 
 export default function Hero() {
-  const navigate = useNavigate();
-
   return (
-    <section className="relative bg-gradient-hero min-h-screen flex items-center">
-      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+    <section className="relative bg-gradient-hero min-h-screen flex items-center pt-20 px-6">
+      <div className="max-w-6xl mx-auto w-full text-center py-24">
+        <p className="text-sm uppercase tracking-wide text-white/80 mb-4 font-medium">
+          For AI Professionals & Developers
+        </p>
 
-      <div className="max-w-7xl mx-auto px-6 py-24 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+          Your subscription chaos into
+          <span className="block mt-2">financial clarity using AI</span>
+        </h1>
 
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full mb-6 border border-white/20">
-              <Shield className="w-4 h-4 text-cyan-400" />
-              <span className="text-sm text-slate-200">Bank-level security • SOC 2 Type II</span>
+        <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Stop losing money to forgotten subscriptions. SubSavvy shows you exactly
+          what you're paying for—and helps you cut the waste.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <button className="bg-white text-coral px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+            Find My Hidden Costs (Free)
+          </button>
+          <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+            <Play size={20} fill="white" />
+            Watch Demo
+          </button>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center text-white/80 text-sm">
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+              <Check size={14} className="text-white" />
             </div>
-
-            <h1 className="text-5xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Your subscription
-              <span className="block gradient-text">
-                command center
-              </span>
-            </h1>
-
-            <p className="text-xl text-slate-300 mb-8 max-w-xl leading-relaxed">
-              Tech professionals waste <span className="font-mono font-semibold text-cyan-400">$2,400/year</span> on forgotten subscriptions.
-              We find them, track them, and help you eliminate the waste—automatically.
-            </p>
-
-            <div className="flex items-center gap-6 mb-10">
-              <div>
-                <div className="font-mono text-3xl font-bold text-white">$2.4M</div>
-                <div className="text-sm text-slate-400">Total saved by users</div>
-              </div>
-              <div className="w-px h-12 bg-white/20" />
-              <div>
-                <div className="font-mono text-3xl font-bold text-white">1,247</div>
-                <div className="text-sm text-slate-400">Active professionals</div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => navigate('/signup')}
-                className="bg-gradient-cta text-white text-lg px-8 py-4 rounded-xl font-semibold hover:shadow-glow-lg transition-all hover:-translate-y-1"
-              >
-                Scan My Subscriptions →
-              </button>
-              <button className="bg-transparent border-2 border-white/20 text-white text-lg px-8 py-4 rounded-xl font-semibold hover:border-indigo-500 hover:bg-indigo-500/10 transition-all">
-                View Demo
-              </button>
-            </div>
-
-            <p className="text-sm text-slate-400 mt-6">
-              No credit card required • 3-minute setup • Cancel anytime
-            </p>
+            <span>Scan 12 months in 60 seconds</span>
           </div>
-
-          <div className="relative">
-            <div className="glass p-6 rounded-2xl">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-300 font-semibold">Monthly Overview</span>
-                  <span className="font-mono text-cyan-400 text-2xl font-bold">$347.82</span>
-                </div>
-
-                <div className="space-y-3">
-                  {[
-                    { name: 'ChatGPT Plus', amount: '$20.00' },
-                    { name: 'GitHub Copilot', amount: '$10.00' },
-                    { name: 'Midjourney', amount: '$30.00' },
-                    { name: 'Claude Pro', amount: '$20.00' }
-                  ].map(sub => (
-                    <div key={sub.name} className="flex justify-between items-center p-3 bg-navy-900 rounded-lg">
-                      <span className="text-slate-200">{sub.name}</span>
-                      <span className="font-mono text-sm text-slate-400">{sub.amount}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-2 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                  <TrendingUp className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <span className="text-sm text-amber-200">2 unused subscriptions detected</span>
-                </div>
-              </div>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+              <Check size={14} className="text-white" />
             </div>
-
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-indigo-500/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl" />
+            <span>No credit card required</span>
           </div>
-
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
+              <Check size={14} className="text-white" />
+            </div>
+            <span>Find $500+ in savings</span>
+          </div>
         </div>
       </div>
     </section>

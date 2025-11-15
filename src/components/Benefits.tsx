@@ -88,35 +88,31 @@ const benefits = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="py-24 bg-gradient-to-b from-navy-900 to-navy-950 px-6">
+    <section id="benefits" className="bg-white py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full mb-6">
-            <span className="text-indigo-400 font-semibold">The SubSavvy Difference</span>
-          </div>
-          <h2 className="text-5xl font-bold text-white mb-6">
-            Your financial guardian on autopilot
+          <p className="text-sm uppercase tracking-wide text-teal mb-4 font-semibold">
+            Why 10,000+ AI Professionals Trust SubSavvy
+          </p>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-6">
+            Never track subscriptions manually
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            AI-powered intelligence that finds, tracks, and optimizes every subscription—so you don't have to.
+          <p className="text-lg md:text-xl text-gray max-w-3xl mx-auto leading-relaxed">
+            From solo AI engineers to startup teams, developers to digital creators,
+            SubSavvy is the only subscription management platform and financial assistant you'll ever need.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.slice(0, 3).map((benefit, index) => (
-            <div key={index} className="glass rounded-2xl p-8 group cursor-pointer hover:border-indigo-500/30 transition-all hover:-translate-y-1">
-              <div className="w-14 h-14 bg-gradient-cta rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                <benefit.icon className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-white mb-4">{benefit.title}</h3>
-              <p className="text-slate-400 leading-relaxed mb-6">{benefit.description}</p>
-              <div className="p-4 bg-navy-800 rounded-lg">
-                <div className="flex items-center gap-2 text-sm text-cyan-400">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>{benefit.stat}</span>
-                </div>
-              </div>
-            </div>
+        <div className="hexagon-grid">
+          {benefits.map((benefit, index) => (
+            <HexagonCard
+              key={index}
+              icon={benefit.icon}
+              title={benefit.title}
+              description={benefit.description}
+              stat={benefit.stat}
+              gradient={benefit.gradient}
+            />
           ))}
         </div>
       </div>

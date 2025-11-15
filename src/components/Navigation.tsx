@@ -44,22 +44,21 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-navy-950/80 backdrop-blur-lg border-b border-white/10' : 'bg-navy-950/80 backdrop-blur-lg border-b border-white/10'
+        isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-cta rounded-lg" />
-            <span className="text-xl font-bold text-white">SubSavvy</span>
-          </div>
+          <a href="/" className="text-2xl font-serif font-bold text-coral">
+            SubSavvy
+          </a>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-slate-400 hover:text-white transition-colors font-medium"
+                className="text-gray hover:text-dark transition-colors font-medium"
               >
                 {link.label}
               </a>
@@ -69,20 +68,20 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-4">
             <button
               onClick={handleSignIn}
-              className="text-slate-400 hover:text-white transition-colors font-medium"
+              className="text-gray hover:text-dark font-medium transition-colors"
             >
               Sign In
             </button>
             <button
               onClick={handleStartFreeScan}
-              className="bg-gradient-cta text-white px-6 py-2.5 rounded-xl font-semibold hover:shadow-glow-lg transition-all hover:-translate-y-0.5"
+              className="bg-coral text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-coral-dark transition-all hover:shadow-lg"
             >
               {user ? 'Go to Dashboard' : 'Start Free Scan'}
             </button>
           </div>
 
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-dark"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -92,13 +91,13 @@ export default function Navigation() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-navy-900 border-t border-white/10">
+        <div className="md:hidden bg-white border-t border-gray-lightest">
           <div className="px-6 py-4 space-y-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-slate-400 hover:text-white transition-colors font-medium py-2"
+                className="block text-gray hover:text-dark transition-colors font-medium py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
@@ -110,7 +109,7 @@ export default function Navigation() {
                   handleSignIn();
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full text-slate-400 hover:text-white font-medium transition-colors py-2"
+                className="w-full text-gray hover:text-dark font-medium transition-colors py-2"
               >
                 Sign In
               </button>
@@ -119,7 +118,7 @@ export default function Navigation() {
                   handleStartFreeScan();
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full bg-gradient-cta text-white px-6 py-3 rounded-xl font-semibold hover:shadow-glow transition-all"
+                className="w-full bg-coral text-white px-6 py-3 rounded-lg font-semibold hover:bg-coral-dark transition-all"
               >
                 {user ? 'Go to Dashboard' : 'Start Free Scan'}
               </button>
