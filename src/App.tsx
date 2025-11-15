@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import StartupDashboard from './pages/StartupDashboard';
+import HobbyistDashboard from './pages/HobbyistDashboard';
 import Onboarding from './pages/Onboarding';
 import { useEffect, useState } from 'react';
 import { supabase } from './lib/supabase';
@@ -127,6 +128,10 @@ function DashboardRouter() {
 
   if (userType === 'startup') {
     return <StartupDashboard />;
+  }
+
+  if (userType === 'hobbyist') {
+    return <HobbyistDashboard />;
   }
 
   return <Dashboard />;
