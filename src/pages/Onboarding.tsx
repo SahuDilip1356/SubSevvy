@@ -48,22 +48,29 @@ export default function Onboarding() {
 
     setSaving(true);
     try {
-      const { error } = await supabase.from('user_onboarding').upsert({
-        user_id: user.id,
-        user_type: data.user_type,
-        team_size: data.team_size,
-        objectives: data.objectives,
-        preferred_currency: data.preferred_currency,
-        tracking_method: data.tracking_method,
-        feature_interests: data.feature_interests,
-        dashboard_name: data.dashboard_name,
-        completed: true,
-        updated_at: new Date().toISOString(),
-      });
+      const { error } = await supabase.from('user_onboarding').upsert(
+        {
+          user_id: user.id,
+          user_type: data.user_type,
+          team_size: data.team_size,
+          objectives: data.objectives,
+          preferred_currency: data.preferred_currency,
+          tracking_method: data.tracking_method,
+          feature_interests: data.feature_interests,
+          dashboard_name: data.dashboard_name,
+          completed: true,
+          updated_at: new Date().toISOString(),
+        },
+        {
+          onConflict: 'user_id',
+        }
+      );
 
       if (error) throw error;
 
-      navigate('/dashboard');
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      navigate('/dashboard', { replace: true });
     } catch (error) {
       console.error('Error saving onboarding data:', error);
       setSaving(false);

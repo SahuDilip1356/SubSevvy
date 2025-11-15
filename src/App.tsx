@@ -87,9 +87,13 @@ function DashboardRouter() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchUserType = async () => {
       if (!user) {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
         return;
       }
 
@@ -104,15 +108,23 @@ function DashboardRouter() {
           console.error('Error fetching user type:', error);
         }
 
-        setUserType(data?.user_type || 'solopreneur');
+        if (isMounted) {
+          setUserType(data?.user_type || 'solopreneur');
+        }
       } catch (error) {
         console.error('Error fetching user type:', error);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchUserType();
+
+    return () => {
+      isMounted = false;
+    };
   }, [user]);
 
   if (loading) {
