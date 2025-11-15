@@ -29,84 +29,42 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-gradient-dark py-20 md:py-32 px-6">
+    <section className="py-24 bg-navy-950 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
-            Real Stories, Real Savings
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Loved by tech professionals
           </h2>
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Hear from AI professionals who have transformed their subscription
-            management with our platform, gaining financial clarity and control.
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Real people, real savings, real clarity
           </p>
-          <button className="bg-white text-dark px-8 py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
-            Get Started Now
-          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl border border-white/20 hover:bg-white/15 transition-all"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-teal flex items-center justify-center text-white font-bold text-xl">
+            <div key={index} className="glass rounded-2xl p-8 flex flex-col hover:border-indigo-500/30 transition-all">
+              <p className="text-slate-300 text-lg leading-relaxed mb-8 flex-1">
+                "{testimonial.quote}"
+              </p>
+
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-cta rounded-full flex items-center justify-center font-semibold text-white">
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold text-lg">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-white/60 text-sm">{testimonial.role}</p>
+                  <div className="font-semibold text-white">{testimonial.name}</div>
+                  <div className="text-sm text-slate-400">{testimonial.role}</div>
                 </div>
               </div>
 
-              <p className="text-white/90 leading-relaxed mb-6">
-                {testimonial.quote}
-              </p>
-
-              <div className="flex gap-1">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 fill-yellow-400"
-                  />
-                ))}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-lg">
+                <Star className="w-4 h-4 text-green-400 fill-green-400" />
+                <span className="text-sm font-mono font-semibold text-green-400">$2,160/year saved</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mb-16">
-          <p className="text-white/60 text-sm mb-6">
-            Featured in leading tech publications
-          </p>
-          <div className="flex flex-wrap gap-8 md:gap-12 justify-center items-center opacity-40">
-            <div className="w-32 h-12 bg-white/20 rounded flex items-center justify-center text-white/60 text-xs font-semibold">
-              TechCrunch
-            </div>
-            <div className="w-32 h-12 bg-white/20 rounded flex items-center justify-center text-white/60 text-xs font-semibold">
-              Product Hunt
-            </div>
-            <div className="w-32 h-12 bg-white/20 rounded flex items-center justify-center text-white/60 text-xs font-semibold">
-              Hacker News
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 text-center border border-white/20">
-          <h3 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-            Ready for Financial Clarity and Control?
-          </h3>
-          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Centralize, optimize, and automate all your tech and AI subscriptions.
-            Gain full control over your spending.
-          </p>
-          <button className="bg-teal text-white px-10 py-5 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
-            Sign Up for the AI-Powered Dashboard
-          </button>
-        </div>
       </div>
     </section>
   );

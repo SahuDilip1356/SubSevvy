@@ -52,52 +52,38 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-white py-20 md:py-32 px-6">
+    <section id="faq" className="py-24 bg-navy-900 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-6">
-            Frequently Asked Questions
+          <h2 className="text-5xl font-bold text-white mb-6">
+            Common questions
           </h2>
-          <p className="text-lg md:text-xl text-gray max-w-2xl mx-auto">
-            Everything you need to know about SubSavvy
-          </p>
         </div>
 
-        <div className="space-y-0">
+        <div className="space-y-6">
           {faqs.map((faq, index) => (
-            <div key={index} className="border-b border-gray-lightest">
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full py-6 flex justify-between items-center text-left hover:text-coral transition-colors group"
-                aria-expanded={openIndex === index}
-              >
-                <h3 className="text-lg md:text-xl font-semibold text-dark pr-8 group-hover:text-coral transition-colors">
-                  {faq.question}
-                </h3>
+            <div key={index} className="glass rounded-2xl p-6 hover:border-indigo-500/30 transition-all cursor-pointer" onClick={() => toggleFAQ(index)}>
+              <div className="flex justify-between items-start gap-4">
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-white mb-3">{faq.question}</h3>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      openIndex === index ? 'max-h-96' : 'max-h-0'
+                    }`}
+                  >
+                    <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
                 <ChevronDown
-                  className={`w-6 h-6 text-gray flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-6 h-6 text-slate-400 flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                 />
-              </button>
-
-              <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'
-                }`}
-              >
-                <p className="text-gray leading-relaxed">{faq.answer}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-gray mb-6">Still have questions?</p>
-          <button className="bg-coral text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all hover:-translate-y-0.5">
-            Contact Support
-          </button>
-        </div>
       </div>
     </section>
   );
